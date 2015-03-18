@@ -11,25 +11,25 @@ if(isset($_GET['page'])) {
         case "home" : include("home.php");
             break;
 
-        case "register" : include("register-nv.php");
+        case "register" : include("pages/register-nv.php");
             break;
 
-        case "register_traitement_nv" : include("register_traitement_nv.php");
+        case "register_traitement_nv" : include("pages/register_traitement_nv.php");
              break;
 
-        case "articleRead" : include("ArticleRead.php");
+        case "articleRead" : include("pages/ArticleRead.php");
             break;
 
-        case "ArticleListe" : include("ArticleListe.php");
+        case "ArticleListe" : include("pages/ArticleListe.php");
             break;
 
-        case "EditArticle" : include("EditArticle.php");
+        case "EditArticle" : include("pages/EditArticle.php");
             break;
 
-        case "EditArticleTraitement" : include("EditArticleTraitement.php");
+        case "EditArticleTraitement" : include("pages/EditArticleTraitement.php");
             break ;
 
-        case "AjoutArticle" : include("AjoutArticle.php");
+        case "AjoutArticle" : include("pages/AjoutArticle.php");
             break ;
 
     }
