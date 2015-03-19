@@ -38,7 +38,7 @@ $article = $statement -> fetch()
 
 
     ?>
-    <p>Ajout article/Edition Aticle</p>
+    <p>Ajout article/Edition Article</p>
     <form method="post" action="index.php?page=AjoutArticle">
         <p>
             <label for="Titre">Titre:</label>

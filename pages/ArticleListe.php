@@ -20,11 +20,11 @@ $articles = $statement -> fetchAll() ;
 
 // on affiche les article
 
-echo'allo' ;
-  foreach($articles as $article){ ?>
+ foreach($articles as $article){ ?>
     <article id="<?php echo $article['id']; ?> ">
-        <p><?php echo $article['title']; ?>
-         <a href="index.php?page=AjoutArticle&id=<?php echo $article['id']?> ">Modifier </a></p>
+        <p><?php echo $article['title']; ?>&nbsp&nbsp&nbsp
+         <a href="index.php?page=AjoutArticle&id=<?php echo $article['id']?> ">Modifier </a>&nbsp&nbsp&nbsp
+        <a href="index.php?page=SupArticle&id=<?php echo $article['id']?> ">Suppression </a></p>
         <p>******************************************************************************************************************</p>
     </article>
   <?php

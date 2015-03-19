@@ -31,6 +31,9 @@ if(isset($_GET['page'])) {
 
         case "AjoutArticle" : include("pages/AjoutArticle.php");
             break ;
+            
+        case "SupArticle"    : include ("pages/SupArticle.php") ;
+            break;
 
     }
 } else {
