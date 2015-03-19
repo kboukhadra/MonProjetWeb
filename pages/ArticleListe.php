@@ -1,35 +1,23 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: hb
- * Date: 16/03/2015
- * Time: 12:59
- */
+
 
 $id =isset($_GET['id']) ? (int)$_GET['id'] : 0 ;
 ?>
 <h2>Lecture de tous article</h2>
 
 <?php
-// on forge la requete
-$sql = "SELECT  * FROM article" ;
-// on fait passer la requete a PDO
-$statement = $db->query($sql); // objet statement
-// si il y a un article fech retourne true sinon false
-$articles = $statement -> fetchAll() ;
-
-// on affiche les article
+$articles = $repository->getAll();
+// on affiche les article en faisant foreach
 
  foreach($articles as $article){ ?>
-    <article id="<?php echo $article['id']; ?> ">
-        <p><?php echo $article['title']; ?>&nbsp&nbsp&nbsp
-         <a href="index.php?page=AjoutArticle&id=<?php echo $article['id']?> ">Modifier </a>&nbsp&nbsp&nbsp
-        <a href="index.php?page=SupArticle&id=<?php echo $article['id']?> ">Suppression </a></p>
+    <article id="<?php echo $article->id; ?> ">
+        <p><?php echo $article->title; ?>&nbsp&nbsp&nbsp
+         <a href="index.php?page=AjoutArticle&id=<?php echo $article->id?> ">Modifier </a>&nbsp&nbsp&nbsp
+        <a href="index.php?page=SupArticle&id=<?php echo  $article->id?> ">Suppression </a></p>
+        <a href="index.php?page=articleRead&id=<?php echo  $article->id?> ">Lire l'article </a></p>
         <p>******************************************************************************************************************</p>
     </article>
   <?php
   }
-
-
 
 ?>

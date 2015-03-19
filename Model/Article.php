@@ -22,11 +22,8 @@ class Article {
      * @param type $title
      * @param type $content
      */
-    public function __construct($id, $title, $content) {
-        $this->id = $id;
-        $this->title = $title;
-        $this->content = $content;
-    }
+    
+    
 
     
     public function display (){

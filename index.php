@@ -1,18 +1,25 @@
 <?php
-require('includes/all.php') ;
+session_start();
+require('includes/all.php');
+include ('Model/Aricle_Repository.php');
+$repository = new Aricle_Repository($db);
+include('includes/blocs/header.php');
 
-if(isset($_GET['page'])) {
-    $maPage=$_GET['page'];
+afficheMessage();
+// $_GET['page'] contient page=
+$maPage = isset($_GET['page']) ? $_GET['page'] : "ArticleListe";
+if (isset($_GET['page'])) {
 
-    switch($maPage ) {
-        case "home" : include("home.php");
+
+    switch ($maPage) {
+        case "home" : include("pages/home.php");
             break;
 
         case "register" : include("pages/register-nv.php");
             break;
 
         case "register_traitement_nv" : include("pages/register_traitement_nv.php");
-             break;
+            break;
 
         case "articleRead" : include("pages/ArticleRead.php");
             break;
@@ -24,24 +31,17 @@ if(isset($_GET['page'])) {
             break;
 
         case "EditArticleTraitement" : include("pages/EditArticleTraitement.php");
-            break ;
-
-        case "AjoutArticle" : include("pages/AjoutArticle.php");
-            break ;
-            
-        case "SupArticle"    : include ("pages/SupArticle.php") ;
             break;
 
+        case "AjoutArticle" : include("pages/AjoutArticle.php");
+            break;
+
+        case "SupArticle" : include ("pages/SupArticle.php");
+            break;
+        default : include ("index.php");
     }
-} else {
-    $page="index.php";
 }
-
-
-
-include('includes/blocs/header.php') ;
-afficheMessage();
-include('includes/blocs/footer.php') ;
+include('includes/blocs/footer.php');
 
 
 

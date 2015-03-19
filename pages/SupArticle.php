@@ -4,7 +4,9 @@
     
     if(isset($_POST['valider'])){
     
-    $db->exec("DELETE FROM article WHERE id=".$id." ");
+    
+    $article = $repository->delete($id);
+    
     header('Location: index.php');
    
  

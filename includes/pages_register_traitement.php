@@ -1,23 +1,5 @@
 <?php
-session_start();
 header('Content-Type: text/html; charset=utf-8');
-/**
- * Created by PhpStorm.
- * User: hb
- * Date: 11/03/2015
- * Time: 08:43
- */
-
-
-/*echo'<h1 align="center">Bienvenue </h1>';
- echo'<ul>';
-foreach($_POST as $key=>$valeur){
-    echo'<li>'. $key.' : '.$valeur.'</li>' ;
-    echo'</br>';
-
-}
-echo'</ul>' ;*/
-
 $uploaddir = 'photo/';// fichier stockage
 
 // chemin relatif
@@ -25,18 +7,10 @@ $uploadfile = $uploaddir . basename($_FILES['photo']['name']);
 
 
 if (move_uploaded_file($_FILES['photo']['tmp_name'], $uploadfile)) {
-    addMessage(0, " valide ", " fichier a été télécharger ok ");
+    addMessageRedirect(0, " valide ", " fichier a été télécharger ok ","index.php?page=register");
 
 }
 else {
-    addMessage(1, " Error "," inscription ok mais photo non uploadé ");
+    addMessageRedirect(1, " Error "," inscription ok mais photo non uploadé ","index.php?page=register");
 }
-
-/*if(empty($_POST['nom']) ){
-    addMessage(2,"warning","remplir vos champ");
-}
-*/
-
-header('Location: index.php?page=register');
-
 ?>

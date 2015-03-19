@@ -1,30 +1,26 @@
 <?php
+function addMessages($code, $type, $lib) {
+    $_SESSION['messages'][] = array("code" => $code, "type" => $type, "lib" => $lib);
+    
+}
 
-/**
- * les parametre d'ajout de messsage
- * @param type $code
- * @param type $type
- * @param type $lib
- * 
- */
-function addMessage($code,$type,$lib){
-    $_SESSION['messages'][]=array("code"=>$code,
-        "type"=>$type,
-        "lib"=>$lib,
-    );
+function addMessageRedirect($code, $type, $lib, $url = "index.php") {
+    //addMessages($code, $type, $lib);
+    header("Location: ".$url);
+    exit(addMessages($code, $type, $lib));
 }
 
 /**
  * 
- * afficher les 
+ * afficher les messages
  */
-function afficheMessage(){
-    if(!empty($_SESSION['messages']) AND isset($_SESSION['messages']) ){;
+function afficheMessage() {
+    if (isset($_SESSION['messages'])) {
 
-        foreach($_SESSION['messages'] as $message){
-
-            echo $message['lib'];
-
+        foreach ($_SESSION['messages'] as $message) {
+            echo'<font color="red">MESSAGE : '.$message['lib'].'</font>';
         }
+       unset($_SESSION['messages']); 
     }
+    
 }
