@@ -1,8 +1,5 @@
 <?php
-require('includes/connection.php');
-include("includes/blocs/menu.php");
-include('includes/function.php') ;
-
+require('includes/all.php') ;
 
 if(isset($_GET['page'])) {
     $maPage=$_GET['page'];
