@@ -11,7 +11,7 @@
  *
  * @author hb
  */
-class Article_Repository {
+class ArticleRepository {
 
     private $db; // type PDO
 

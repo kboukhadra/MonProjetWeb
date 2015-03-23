@@ -5,7 +5,7 @@ function addMessages($code, $type, $lib) {
 }
 
 function addMessageRedirect($code, $type, $lib, $url = "index.php") {
-    //addMessages($code, $type, $lib);
+    
     header("Location: ".$url);
     exit(addMessages($code, $type, $lib));
 }

@@ -26,7 +26,7 @@ if (isset($_POST['valider'])) {
 $article = $repository->get($id);
 ?>
 <p>Ajout article/Edition Article</p>
-<form method="post" action="index.php?page=AjoutArticle">
+<form method="post" action="index.php?page=articleAjout">
     <p>
         <label for="Titre">Titre:</label>
         <input type="text" name="titre" value="<?php echo ($id > 0) ? $article->title : ""; ?>  "/>

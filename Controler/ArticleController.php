@@ -24,13 +24,7 @@ class ArticleController {
      * 
      * @return string HTML code of the content of page
      */
-    public function indexAction() {
-        // on forge la requete SQL
-        $articles = $this->repo->getAll();
-        $view = new View("article.index", array("articles" => $articles));
-
-        return $view->getHtml();
-    }
+   
 
     /**
      * Allow the users to read an article on a given id via GET
@@ -47,7 +41,7 @@ class ArticleController {
         return $view->getHtml();
     }
 
-    public function listeAction() {
+    public function indexAction() {
         $id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
         echo'<h2>Lecture de tous article</h2>';
         $articles = $this->repo->getAll();
@@ -62,7 +56,7 @@ class ArticleController {
         if (isset($_POST['valider'])) {
 
             $article = $this->repo->delete($_POST['id']);
-            addMessageRedirect(25, "valider", "Tu as bien supprimer ton élément", $url = "index.php");
+            addMessageRedirect(25, "valider", "Tu as bien supprimé ton élément", $url = "index.php");
         }
 
         if (isset($_GET['id'])) {
@@ -91,9 +85,10 @@ class ArticleController {
             } else {// sinon j'ajoute mon article
                 $article = new Article();
                 $this->repo->insert($article);
+                addMessageRedirect(0, "valid", "Votre article à été ajouter", "index.php");
             }
 
-            addMessageRedirect(0, "valid", "Votre article à été ajouter", "index.php");
+            
         }
 
 
