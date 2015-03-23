@@ -28,7 +28,7 @@ class Application {
         /*$repository = new ArticleRepository($this->db);
         $articleController = new ArticleController($repository);*/
         // $_GET['page'] contient page=
-        //$maPage = isset($_GET['page']) ? $_GET['page'] : "articleListe";
+       $maPage = isset($_GET['page']) ? $_GET['page'] : "";
 
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -45,51 +45,48 @@ class Application {
 
         //////////////////////////////////////////////////////////////////////////////
 
-     /*   $page = (isset($_GET['page']) ? $_GET['page'] : "DEPREC");
+        $page = (isset($_GET['page']) ? $_GET['page'] : "DEPREC");
         if ($page != "DEPREC") {
             switch ($maPage) {
                 case "home" : include("pages/home.php");
-                    $entityName = "home";
-                    $actionName = "";
+                    
                     break;
 
                 case "register" : include("pages/register-nv.php");
-                    $entityName = "article";
-                    $actionName = "Read";
+                   
                     break;
 
                 case "register_traitement_nv" : include("pages/register_traitement_nv.php");
                     break;
 
-                case "articleRead" :// include("pages/ArticleRead.php");
+                case "articleRead" :
 
                      $entityName = "article";
                      $actionName = "Read";
                     $this->content = $html = $articleController->readAction();
                     break;
 
-                case "articleListe" : //include("pages/ArticleListe.php");
+                case "articleListe" : 
                     $entityName = "article";
                     $actionName = "Liste";
                     $this->content = $html = $articleController->listeAction();
                     break;
 
-                case "articleEdit" : //include("pages/EditArticle.php");
+                case "articleEdit" : 
                     $entityName = "article";
                     $actionName = "Edit";
                     $this->content = $html = $articleController->ajoutAction();
                     break;
 
-                case "EditArticleTraitement" : include("pages/EditArticleTraitement.php");
-                    break;
+                
 
-                case "articleAjout" : //include("pages/AjoutArticle.php");
+                case "articleAjout" : 
                     $entityName = "article";
                     $actionName = "Ajout";
                     $this->content = $html = $articleController->ajoutAction();
                     break;
 
-                case "articleSup" : //include ("pages/SupArticle.php");
+                case "articleSup" : 
                     $entityName = "article";
                     $actionName = "Sup";
                     $this->content = $html = $articleController->supAction();
@@ -97,7 +94,7 @@ class Application {
                 default : include ("index.php");
             }
         }
-        */
+       
         
         ///////////////////////////////////////////////////////////////////////////////////////////////////////
         // III. / IV. On charge les fichiers nécessaires, et on instancie les classes de reco, controller
@@ -151,8 +148,10 @@ class Application {
     public function showReponse() {
          include('includes/blocs/header.php');
         afficheMessage();
-
-        echo $this->content;
+        if(isset($_GET['Controller'])){
+            echo $this->content;
+        }
+        
 
 
         include('includes/blocs/footer.php');
