@@ -4,13 +4,11 @@ if ($article) {
     
 // on affiche l'article 
 ?>
-<h2>Lecture d'un article</h2>
-
-
+<h1>Lecture d'un article</h1>
 
 <article id="<?php echo $article->id; ?>">
-	<h1><?php echo $article->title; ?></h1>
-	<p><?php echo nl2br($article->content); ?></p>
+    <h3>Titre :<u><?php echo $article->title; ?></u></h3>
+	<p>Contenu :<?php echo nl2br($article->content); ?></p>
 </article>
 
 <?php 

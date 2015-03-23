@@ -8,7 +8,7 @@
 
 $id =isset($_GET['id']) ? (int)$_GET['id'] : 0 ;
 ?>
-<h2>Lecture d'un article</h2>
+<h1>Lecture d'un article</h1>
 
 <?php
 $article = $repository->get($id); // on récupere l'objet article de mon get($d) et on l'inject dans $article
@@ -17,7 +17,8 @@ if($article) {
 // on affiche l'article
     ?>
     <article id="<?php echo $article->id; ?> ">
-        <h2><?php echo $article->title; ?></h2>
+        
+        <h3>Titre : <?php echo $article->title; ?></h3>
 
         <p><?php echo nl2br($article->content); ?></p>
         <p>**************************************************************</p>

@@ -2,6 +2,7 @@
 
 if ($articles) {
     $nbRows = count($articles);
+    
 // on affiche l'article 
     ?>
     <h2>Liste des articles (<?php echo (int) $nbRows; ?>)</h2>
@@ -13,7 +14,9 @@ if ($articles) {
                 - <a href="index.php?Controller=article&Action=Sup&id=<?php echo $article->id; ?>">delete</a>&nbsp&nbsp&nbsp
             </li>
         <?php
+                
     }
+    
     ?>
     </ul>
         <?php

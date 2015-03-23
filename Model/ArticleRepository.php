@@ -1,13 +1,8 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of Aricle_Repository
+ * il liste des fonction CRUD
  *
  * @author hb
  */
@@ -24,7 +19,8 @@ class ArticleRepository {
      * @param type $id Id of Article
      * @return mixed  $article or null
      */
-    function get($id) {
+    function get($id) {// on récupère un article avec son id
+    
         // on forge la requete
         $sql = "SELECT  * FROM article WHERE id =" . $id;
         // on fait passer la requete a PDO

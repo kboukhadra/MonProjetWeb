@@ -22,20 +22,6 @@ class Article {
      * @param type $title
      * @param type $content
      */
-    
-    
-
-    
-    public function display (){
-        
-        echo "votre article a un titre ".$this->title;
-        echo"</br>" ;
-        echo " le contenu est :" ;
-        echo"</br>";
-        echo $this->content ;
-        }
-        
-        
         function getId() {
             return $this->id;
         }

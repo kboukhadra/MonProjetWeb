@@ -34,22 +34,22 @@ class ArticleController {
     public function readAction() {
         // on récupère l'id de l'article à travers la var GET
         $id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
-        // on demande l'article au repo
+        // on demande l'article au repository 
         $article = $this->repo->get($id);
-        $view = new View("article.read", array("article" => $article));
-
+        $view = new View("article.read", array("article" => $article));// $article =tableau article
+       
         return $view->getHtml();
     }
 
-    public function indexAction() {
+    public function listeAction() {
         $id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
-        echo'<h2>Lecture de tous article</h2>';
         $articles = $this->repo->getAll();
         $view = new View("article.index", array("articles" => $articles));
+        
         return $view->getHtml();
     }
 
-    public function deleteAction() {
+    public function supAction() {
         $article = null;
         $id = null;
 
@@ -66,7 +66,7 @@ class ArticleController {
         return $view->getHtml();
     }
 
-    public function addAction() {
+    public function ajoutAction() {
         $id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 
         // si j'ai validé mon formulaire

@@ -1,12 +1,11 @@
 <?php
-
-
+// on vérifie si le $_GET['id'] existe si oui il est égale à (int)$_GET['id'] sinon 0
 $id =isset($_GET['id']) ? (int)$_GET['id'] : 0 ;
 ?>
-<h2>Lecture de tous article</h2>
+
 
 <?php
-$articles = $repository->getAll();
+
 // on affiche les article en faisant foreach
 
  foreach($articles as $article){ ?>

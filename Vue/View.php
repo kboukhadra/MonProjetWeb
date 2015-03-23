@@ -27,11 +27,16 @@ class View {
      * @return string Html code of the hydrated view
      */
     public function getHtml() {
+        
         // on test l'existence d'un fichier template dans le dossier vues
         if (isset($this->template) && !empty($this->template)) {
-            // si le template existe
+           
+            // si le template existe on va l'inclure mais pas avec l'include
             if (file_exists("templates/" . $this->template . ".tpl.php")) {
                 $html = $this->getIncludeContents();
+                
+                
+                
             } else
                 $html = "No file templates/" . $this->template . ".tpl.php has been found.<br/>";
         }
@@ -49,12 +54,23 @@ class View {
         // on redéclare chacune des variables depuis le tableau
         // par exemple si on avait $params['cle'] = valeur
         // on aura maintenant $cle = valeur;
-        foreach ($this->params as $key => $value) {
+        //on envoie  $view = new View("article.read", array("article" => $article))
+        //template ="article.read" et params = array("article" => $article)
+      
+        foreach ($this->params as $key => $value) {// $this->params est un tableau assoc avec un autre tableau dedans
+           
             $$key = $value;
-        }
-        // puis on inclut le template
+            // le faite de faire cela $$key = $value nous allons obtenenir
+            //$article=$value <=> $article=array('id'=>,'title'=> ,'content'=>)
+            ///et le trasmettre dans notre vue avec le parametre $article ou $articles suivant 
+            //l'instanciation de la vue
+                }
+       
+               // puis on inclut le template
         // pour récupérer le code généré dans une variable,
         include("templates/" . $this->template . ".tpl.php");
+        
+         
         return ob_get_clean();
     }
 

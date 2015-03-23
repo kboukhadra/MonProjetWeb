@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>
     <?php
-    $titre ;
+    //echo Application::titre ;
     ?>
 
     </title>

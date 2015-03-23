@@ -16,16 +16,19 @@ class Application {
     private $db;
     private $content;
     private $title;
+    
 
     function __construct($db) {
         $this->db = $db;
+       
+       
     }
 
     public function handleRequest() {
         /*$repository = new ArticleRepository($this->db);
         $articleController = new ArticleController($repository);*/
         // $_GET['page'] contient page=
-        $maPage = isset($_GET['page']) ? $_GET['page'] : "articleListe";
+        //$maPage = isset($_GET['page']) ? $_GET['page'] : "articleListe";
 
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -42,12 +45,12 @@ class Application {
 
         //////////////////////////////////////////////////////////////////////////////
 
-        $page = (isset($_GET['page']) ? $_GET['page'] : "DEPREC");
+     /*   $page = (isset($_GET['page']) ? $_GET['page'] : "DEPREC");
         if ($page != "DEPREC") {
             switch ($maPage) {
                 case "home" : include("pages/home.php");
                     $entityName = "home";
-                   $actionName = "";
+                    $actionName = "";
                     break;
 
                 case "register" : include("pages/register-nv.php");
@@ -57,9 +60,6 @@ class Application {
 
                 case "register_traitement_nv" : include("pages/register_traitement_nv.php");
                     break;
-
-
-
 
                 case "articleRead" :// include("pages/ArticleRead.php");
 
@@ -71,13 +71,13 @@ class Application {
                 case "articleListe" : //include("pages/ArticleListe.php");
                     $entityName = "article";
                     $actionName = "Liste";
-                    $this->content = $html = $articleController->indexAction();
+                    $this->content = $html = $articleController->listeAction();
                     break;
 
                 case "articleEdit" : //include("pages/EditArticle.php");
                     $entityName = "article";
-                     $actionName = "Edit";
-                    $this->content = $html = $articleController->addAction();
+                    $actionName = "Edit";
+                    $this->content = $html = $articleController->ajoutAction();
                     break;
 
                 case "EditArticleTraitement" : include("pages/EditArticleTraitement.php");
@@ -85,53 +85,71 @@ class Application {
 
                 case "articleAjout" : //include("pages/AjoutArticle.php");
                     $entityName = "article";
-                    - $actionName = "Ajout";
-                    $this->content = $html = $articleController->addAction();
+                    $actionName = "Ajout";
+                    $this->content = $html = $articleController->ajoutAction();
                     break;
 
                 case "articleSup" : //include ("pages/SupArticle.php");
                     $entityName = "article";
                     $actionName = "Sup";
-                    $this->content = $html = $articleController->deleteAction();
+                    $this->content = $html = $articleController->supAction();
                     break;
                 default : include ("index.php");
             }
         }
-        
+        */
         
         ///////////////////////////////////////////////////////////////////////////////////////////////////////
         // III. / IV. On charge les fichiers nécessaires, et on instancie les classes de reco, controller
         // on retravaille la var obtenue pour obtenir un nom de la forme "ArticleController"
-        $controllerName = $entityName . "Controller";
-        // on inclut le controller
+        
+        $controllerName = ucfirst($entityName . "Controller");//affiche ArticleController
+               // on inclut le controller
         include("Controller/" . $controllerName . ".php");
         // on inclut l'entité
-        $entityName = ucfirst($entityName);
-        //echo $entityName;
+       
+        $entityName = ucfirst($entityName);// affiche Article
+        
+       
         include("Model/" . $entityName . ".php");
         // Repo - @todo Utiliser un gestionnaire de repo et les charger
+       
         // depuis les actions de controller
-        $repoName = ucfirst(strtolower($entityName)) . "Repository";
-        include("Model/" . $repoName . ".php");
+        $repoName = ucfirst(strtolower($entityName)) . "Repository";// affiche ArticleRepository
+        include("Model/" . $repoName . ".php");!
+       
         // on instancie un nouveau repo
         $repo = new $repoName($this->db);
         // on instancie le controller
         $controller = new $controllerName($repo);
         // V. On regarde si l'action de controller existe, puis on la charge
-        // on retravaille la var obtenue pour obtenir un nom de la forme "indexAction"
-        $action = $actionName . "Action";
+        // on "retravaille la var obtenue pour obtenir un nom de la forme "indexAction"
+        $actionName =strtolower($actionName);// affiche liste,ajout,sup
+        
+       $action = $actionName."Action";
+        //comme je gère ajout et update je regarde si $action == editionAction si oui alors $acton ="ajoutAction
+        if($action == "editAction" ){
+            $action="ajoutAction";
+        }
+       
         // si la méthode demandée n'existe pas, remettre "index"
         if (!method_exists($controller, $action)) {
-            $actionName = "index";
-            $action = "indexAction";
+            $actionName = "liste";
+            $action = "listeAction";
         }
+        
+        
+        // on stock le titre sous la forme "Article - Index"
+        $this->title = $entityName . "_" . $actionName;
+        // on appelle dynamiquement la méthode de controller
+        $this->content = $controller->$action();
         
         
         
     }
 
     public function showReponse() {
-        include('includes/blocs/header.php');
+         include('includes/blocs/header.php');
         afficheMessage();
 
         echo $this->content;
