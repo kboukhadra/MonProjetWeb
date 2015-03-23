@@ -11,7 +11,7 @@
  *
  * @author hb
  */
-class Aricle_Repository {
+class Article_Repository {
 
     private $db; // type PDO
 
@@ -50,12 +50,8 @@ class Aricle_Repository {
     function delete($id) {
         $sql = "DELETE FROM article WHERE id =" . $id;
         // on fait passer la requete a PDO
-        $statement = $this->db->query($sql); // objet statement
+        return $this->db->exec($sql); // objet statement
         // si il y a un article fech retourne true sinon false
-
-        $statement->setFetchMode(PDO::FETCH_CLASS, "Article"); //Article est le nom de la class
-        $article = $statement->fetch();
-        return $article;
     }
 
     function Insert(Article $article) {

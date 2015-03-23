@@ -1,9 +1,11 @@
 <?php
 session_start();
 require('includes/all.php');
-include ('Model/Aricle_Repository.php');
-$repository = new Aricle_Repository($db);
+include ('Model/Article_Repository.php');
+$repository = new Article_Repository($db);
 include('includes/blocs/header.php');
+require ('Controler/ArticleController.php');
+$articleControl = new ArticleController($repository);
 
 afficheMessage();
 // $_GET['page'] contient page=
@@ -21,10 +23,12 @@ if (isset($_GET['page'])) {
         case "register_traitement_nv" : include("pages/register_traitement_nv.php");
             break;
 
-        case "articleRead" : include("pages/ArticleRead.php");
+        case "articleRead" :// include("pages/ArticleRead.php");
+            $html = $articleControl->readAction();
             break;
 
-        case "ArticleListe" : include("pages/ArticleListe.php");
+        case "ArticleListe" : //include("pages/ArticleListe.php");
+            $html = $articleControl->listeAction();
             break;
 
         case "EditArticle" : include("pages/EditArticle.php");
@@ -36,11 +40,14 @@ if (isset($_GET['page'])) {
         case "AjoutArticle" : include("pages/AjoutArticle.php");
             break;
 
-        case "SupArticle" : include ("pages/SupArticle.php");
+        case "SupArticle" : //include ("pages/SupArticle.php");
+             $html = $articleControl->deleteAction();
             break;
         default : include ("index.php");
     }
+    echo $html;
 }
+        
 include('includes/blocs/footer.php');
 
 
