@@ -18,7 +18,7 @@ if (isset($_POST['valider'])) {
          
     }
     
-    addMessageRedirect(0, "valid","Votre article à été bien inséré ou modifier","index.php?page=ArticleListe");
+    addMessageRedirect(0, "valid","Votre article à été bien inséré ou modifier","index.php?Controller=Article&Action=Liste");
  
 }
 
@@ -26,7 +26,7 @@ if (isset($_POST['valider'])) {
 $article = $repository->get($id);
 ?>
 <p>Ajout article/Edition Article</p>
-<form method="post" action="index.php?page=articleAjout">
+<form method="post" action="index.php?Controller=article&Action=Ajout">
     <p>
         <label for="Titre">Titre:</label>
         <input type="text" name="titre" value="<?php echo ($id > 0) ? $article->title : ""; ?>  "/>
