@@ -8,9 +8,9 @@ if ($articles) {
     <ul>
         <?php foreach ($articles as $article) { ?>
             <li id="<?php echo $article->id; ?>">
-                <a href="index.php?page=articleRead&id=<?php echo $article->id; ?>"><?php echo $article->title; ?></a>
-                 <a href="index.php?page=AjoutArticle&id=<?php echo $article->id; ?>">edit</a>
-                - <a href="index.php?page=SupArticle&id=<?php echo $article->id; ?>">delete</a>
+                <a href="index.php?page=articleRead&id=<?php echo $article->id; ?>"><?php echo $article->title; ?></a>&nbsp&nbsp&nbsp
+                 <a href="index.php?page=EditArticle&id=<?php echo $article->id; ?>">edit</a>&nbsp&nbsp&nbsp&nbsp
+                - <a href="index.php?page=SupArticle&id=<?php echo $article->id; ?>">delete</a>&nbsp&nbsp&nbsp
             </li>
         <?php
     }

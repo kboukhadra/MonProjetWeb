@@ -31,13 +31,15 @@ if (isset($_GET['page'])) {
             $html = $articleControl->listeAction();
             break;
 
-        case "EditArticle" : include("pages/EditArticle.php");
+        case "EditArticle" : //include("pages/EditArticle.php");
+            $html = $articleControl->addAction();
             break;
 
         case "EditArticleTraitement" : include("pages/EditArticleTraitement.php");
             break;
 
-        case "AjoutArticle" : include("pages/AjoutArticle.php");
+        case "AjoutArticle" : //include("pages/AjoutArticle.php");
+            $html = $articleControl->addAction();
             break;
 
         case "SupArticle" : //include ("pages/SupArticle.php");

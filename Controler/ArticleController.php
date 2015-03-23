@@ -72,4 +72,35 @@ class ArticleController {
         return $view->getHtml();
     }
 
+    public function addAction() {
+        $id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+
+        // si j'ai validé mon formulaire
+        if (isset($_POST['valider'])) {
+            
+            // si j'ai un id dans le post
+            if (isset($_POST['id']) AND $_POST['id'] > 0) {
+                
+                $id = (int) $_POST['id'];
+                if ($id > 0) {// id est sup a zéro je fais un update
+                    $this->repo->Update($id);
+                    addMessageRedirect(0, "valid", "Votre article à été bien modifié ", "index.php");
+                }
+
+                // le $id du get
+            } else {// sinon j'ajoute mon article
+                $article = new Article();
+                $this->repo->insert($article);
+            }
+
+            addMessageRedirect(0, "valid", "Votre article à été ajouter", "index.php");
+        }
+
+
+        $article = $this->repo->get($id);
+        
+        $view = new View("article.ajout", array("article" => $article, "id" => $id));
+        return $view->getHtml();
+    }
+
 }
